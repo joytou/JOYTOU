@@ -14,7 +14,7 @@ $.getJSON('https://api.github.com/repos/joytou/joytou.github.io/issues', functio
    {
       if(data[i].labels[j].name=='announcement')
       {
-         document.getElementById("test").innerHTML = converter.makeHtml(data[i].body);
+         document.getElementById("test").innerHTML += converter.makeHtml("<p>"+data[i].body)+"</p>";
        }
    }
    }
