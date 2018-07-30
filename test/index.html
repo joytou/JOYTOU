@@ -14,7 +14,12 @@ $.ajax({
        //在这里做些事情，假设返回的json数据里有name这个属性
        //有时候可以直接data.name或者data['name']去访问
        //但有时候，却要通过var jsonData = eval("("+data.responseText+")");才可以通过jsonData.name访问，而且这种情况下，需要是complete而不是success
-       document.write('<span>'+data+'</span>');
+       for(var i in data){
+        //表示遍历数组，而i表示的是数组的下标值，
+        //data[i]表示获得第i个json对象即JSONObject
+        //data[i]通过.字段名称即可获得指定字段的值
+        document.write('<p><span>'+data[i].body+'</span></p>');
+    }
    }
    });
 $.ajax(options)
