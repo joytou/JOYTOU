@@ -6,7 +6,7 @@ lang: cn
 ---
 <script>
 $.getJSON('https://api.github.com/repos/joytou/joytou.github.io/issues', function(data){
-   for (var i = 0; i < data.rows.length; i++) {
+   for (var i = 0; i < data.length; i++) {
       document.write('<p>' + data[i].body + '</p>');
    }
 });</script>
