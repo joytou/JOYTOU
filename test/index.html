@@ -4,15 +4,18 @@ nav: tag
 permalink: /tests/
 lang: cn
 ---
+<div id="test"></div>
 <script src="{{ '/tests/Markdown.Converter.min.js' | prepend: site.baseurl }}?v={{ site.time | date: "%Y%m%d" }}"></script>
 <script>
+var converter = new Markdown.Converter();
 $.getJSON('https://api.github.com/repos/joytou/joytou.github.io/issues', function(data){
    for (var i = 0; i < data.length; i++) {
    for (var j = 0; j < data[i].labels.length; j++) 
    {
       if(data[i].labels[j].name=='announcement')
       {
-         document.write('<p>' + data[i].body + '</p>');
+            var htm = converter.makeHtml(data[i].body);
+            $('#test').html(htm);
        }
    }
    }
