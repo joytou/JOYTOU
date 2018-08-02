@@ -45,11 +45,18 @@ if(window.location.pathname=='/{{ site.baseurl }}downloads.html'){
     var ttd=document.createElement("td");
     ttd.appendChild(document.createTextNode(data[i].prerelease));
     ttr.appendChild(ttd);
+    ttd.appendChild(document.createTextNode(data[i].name));
+    ttr.appendChild(ttd);
+    ttd.appendChild(document.createTextNode(data[i].published_at));
+    ttr.appendChild(ttd);
+    ttd.appendChild(document.createTextNode(data[i].body));
+    ttr.appendChild(ttd);
+    document.getElementsByTagName("tbody").appensChild(ttr);
     }
     },
     statusCode: {
      404: function() {
-      document.getElementById("jumbotrontitle").innerHTML="Status Code: 404";
+      document.getElementByTagName("tbody").innerHTML="Status Code: 404";
      }
     }
     });
