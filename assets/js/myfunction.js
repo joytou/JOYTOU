@@ -35,7 +35,7 @@ for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[
     }
    });
 /** downloads page **/
-if(window.location.pathname=='/{{ site.baseurl }}downloads.html'){
+if(window.location.pathname=='/{{ site.baseurl }}downloads/'){
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
     dataType: 'json',
