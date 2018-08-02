@@ -9,7 +9,7 @@
      home: "Home"
      categoryarticle: "Categories"
      tagarticle: "Tags"
-     rssfeed: "RSS feed"
+     rssfeed: "RSS"
      firstpage: "First page"
      lastpage: "Last page"
      shareto: "Share to"
@@ -37,3 +37,4 @@
      required: "Required"
      submit: "Submit"
      contact: "Contact"
+     download: "Downloads"
