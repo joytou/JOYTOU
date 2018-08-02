@@ -40,17 +40,20 @@ for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[
     success: function(data) {
     for(var i=0;i<data.length;i++){
     /*document.getElementById("tabletbody").innerHTML+='<tr><td>'+data[i].prerelease+'</td><td>'+data[i].name+'</td><td>'+data[i].published_at+'</td><td>'+converter.makeHtml(data[i].body)+'</td></tr>';*/
-    ttr=document.createElement("tr");
+    var ttr=document.createElement("tr");
     var ttd=document.createElement("td");
     ttd.appendChild(document.createTextNode(data[i].prerelease));
     ttr.appendChild(ttd);
+    var ttd=document.createElement("td");
     ttd.appendChild(document.createTextNode(data[i].name));
     ttr.appendChild(ttd);
+    var ttd=document.createElement("td");
     ttd.appendChild(document.createTextNode(data[i].published_at));
     ttr.appendChild(ttd);
-    ttd.appendChild(document.createTextNode(converter.makeHtml(data[i].body)));
+    var ttd=document.createElement("td");
+    ttd.appendChild(document.createTextNode(data[i].body));
     ttr.appendChild(ttd);
-    document.getElementById("tabletbody").appensChild(ttr);
+    document.getElementById("tabletbody").appendChild(ttr);
     }
     },
     statusCode: {
