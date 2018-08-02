@@ -51,7 +51,7 @@ for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[
     ttd.appendChild(document.createTextNode(data[i].published_at));
     ttr.appendChild(ttd);
     var ttd=document.createElement("td");
-    ttd.appendChild(document.createTextNode(data[i].body));
+    ttd.innerHTML=converter.makeHtml(data[i].body);
     ttr.appendChild(ttd);
     document.getElementById("tabletbody").appendChild(ttr);
     }
