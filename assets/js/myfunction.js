@@ -21,7 +21,6 @@ var Markdown;Markdown="object"==typeof exports&&"function"==typeof require?expor
 /*maekdown converter and parsing json*/
 var converter=new Markdown.Converter();
 /*$.getJSON('https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',function(data){for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[i].labels[j].name=='{{ site.github_label }}'&&data[i].user.login=='{{ site.github_username }}'){document.getElementById("jumbotrontitle").innerHTML=data[i].title;document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);document.getElementById("jumbotronurl").href=data[i].html_url;j=data[i].labels.length;i=data.length;}}}});*/
-
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',
     dataType: 'json',
@@ -40,7 +39,7 @@ for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
-    document.getElementsByTagName("tbody").innerHTML+='<tr><td>'+data[i].prerelease+'</td><td>'+data[i].name+'</td><td>'+data[i].published_at+'</td><td>'+data[i].body+'</td></tr>';
+    document.getElementsById("table-tbody").innerHTML+='<tr><td>'+data[i].prerelease+'</td><td>'+data[i].name+'</td><td>'+data[i].published_at+'</td><td>'+data[i].body+'</td></tr>';
     }
     },
     statusCode: {
