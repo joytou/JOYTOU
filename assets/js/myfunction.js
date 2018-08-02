@@ -41,17 +41,7 @@ if(window.location.pathname=='/{{ site.baseurl }}downloads/'){
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
-    var ttr=document.createElement("tr");
-    var ttd=document.createElement("td");
-    ttd.appendChild(document.createTextNode(data[i].prerelease));
-    ttr.appendChild(ttd);
-    ttd.appendChild(document.createTextNode(data[i].name));
-    ttr.appendChild(ttd);
-    ttd.appendChild(document.createTextNode(data[i].published_at));
-    ttr.appendChild(ttd);
-    ttd.appendChild(document.createTextNode(data[i].body));
-    ttr.appendChild(ttd);
-    document.getElementsByTagName("tbody").appensChild(ttr);
+    document.getElementsByTagName("tbody").innerHTML+='<tr><td>'+data[i].prerelease+'</td><td>'+data[i].name+'</td><td>'+data[i].published_at+'</td><td>'+data[i].body+'</td></tr>';
     }
     },
     statusCode: {
