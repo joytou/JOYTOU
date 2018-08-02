@@ -3,6 +3,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="x-dns-prefetch-control" content="{{ site.dnsPrefetch }}">
     <meta http-equiv="Cache-control" content="public">
+    <meta http-equiv="Expires" content="31536000">
+    <meta name="revisit-after" content="7 days">
     {%- for dns in site.dns -%}
     <link rel="dns-prefetch" href="{{ dns }}">
     {%- endfor -%}
