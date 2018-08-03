@@ -22,6 +22,7 @@ var Markdown;Markdown="object"==typeof exports&&"function"==typeof require?expor
 var converter=new Markdown.Converter();
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',
+    cache: false,
     dataType: 'json',
     success: function(data) {
 for(var i=0;i<data.length;i++){
@@ -40,6 +41,9 @@ i=data.length;
      404: function() {
       document.getElementById("jumbotrontitle").innerHTML="Status Code: 404";
      }
+    },
+    error: function() {
+    alert("error");
     }
    });
 /** downloads page **/
@@ -47,6 +51,7 @@ if(document.getElementById("tabletbody"))
 {
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
+    cache: false,
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
@@ -60,6 +65,9 @@ if(document.getElementById("tabletbody"))
      404: function() {
       document.getElementById("listgroup").innerHTML="Status Code: 404";
      }
+    },
+    error: function() {
+    alert("error");
     }
     });
 }
