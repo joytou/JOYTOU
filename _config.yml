@@ -36,6 +36,10 @@ safe: false
 permalink: /:year/:month/:day/:title/
 markdown: kramdown
 
+#Navbar setting
+#If show the 'download' item on the navbar
+showdownload: true
+
 #Pagination setting
 #Testing, not opening
 paginatenum: 2

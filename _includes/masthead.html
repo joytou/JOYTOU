@@ -75,6 +75,7 @@
    <li class="{%- if page.nav == "about" -%} active{%- endif -%}"><a href="{{ site.baseurl }}/{{ page.lang }}/about/"><span class="glyphicon glyphicon-user"></span>{{ translation.about }}</a></li>
   <li class="{%- if page.nav == "contact" -%} active{%- endif -%}"><a href="{{ site.baseurl }}/{{ page.lang }}/contact/"><span class="glyphicon glyphicon-comment"></span>{{ translation.contact }}</a></li>
             <li class="{%- if page.nav == "feed" -%}active{%- endif -%}"><a href="{{ site.baseurl }}/feed.xml"><span class="icon-rss"></span>{{ translation.rssfeed }}</a></li>
+{%- if site.showdownload -%}            <li class="{%- if page.nav == "downloads" -%}active{%- endif -%}"><a href="{{ site.baseurl }}/{{ page.lang }}/downloads/"><span class="glyphicon glyphicon-download-alt"></span>{{ translation.download }}</a></li>{%- endif -%}
 		  </ul>
 		</div>
 	  </div>
