@@ -55,7 +55,7 @@ if(document.getElementById("listgroup"))
     for(var i=0;i<data.length;i++){
     var eli=document.createElement("li");
     eli.setAttribute("class","list-group-item");
-    eli.innerHTML='<h2>'+data[i].name+'</h2><p class="small">'+data[i].author.login+' published on <time datetime="'+data[i].published_at+'">'+data[i].published_at+'</time></p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHTML(data[i].body)+'</div>';
+    eli.innerHTML='<h2>'+data[i].name+'</h2><p class="small">'+data[i].author.login+' published on '+data[i].published_at+'</p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHTML(data[i].body)+'</div>';
     document.getElementById("listgroup").appendChild(eli);
     }
     },
