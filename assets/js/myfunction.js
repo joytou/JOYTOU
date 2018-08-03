@@ -34,7 +34,7 @@ for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[
     }
    });
 /** downloads page **/
-if(document.getElementById("tabletbody"))
+/*if(document.getElementById("tabletbody"))
 {
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
@@ -48,4 +48,4 @@ for(var i=0;i<data.length;i++){var ttr=document.createElement("tr");var ttd=docu
      }
     }
     });
-}
+}*/
