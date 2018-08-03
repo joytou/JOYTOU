@@ -25,17 +25,17 @@ var converter=new Markdown.Converter();
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',
     dataType: 'json',
     success: function(data) {
-for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[i].labels[j].name=='{{ site.github_label }}'&&data[i].user.login=='{{ site.github_username }}'){
-/*document.getElementById("jumbotrontitle").innerHTML=data[i].title;document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);document.getElementById("jumbotronurl").href=data[i].html_url;*/
-document.getElementById("jumbotronelements").appendChild(document.createElement("h1").appendChild(document.createTextNode(data[i].title)));
-document.getElementById("jumbotronelements").appendChild(document.createElement("p").innerHTML=converter.makeHtml(data[i].body));
-var aelement=document.createElement("a");
-aelement.appendChild(document.createTextNode('Read More'));
-aelement.setAttribute('href',data[i].html_url));
-aelement.setAttribute('class','btn btn-primary btn-lg');
-aelement.setAttribute('role','button');
-document.getElementById("jumbotronelements").appendChild(document.createElement("p").appendChild(aelement));
-j=data[i].labels.length;i=data.length;}}}
+for(var i=0;i<data.length;i++){
+for(var j=0;j<data[i].labels.length;j++){
+if(data[i].labels[j].name=='{{ site.github_label }}'&&data[i].user.login=='{{ site.github_username }}'){
+document.getElementById("jumbotrontitle").appendChild(document.createTextNode(data[i].title));
+document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);
+document.getElementById("jumbotronurl").href=data[i].html_url;
+j=data[i].labels.length;
+i=data.length;
+}
+}
+}
     },
     statusCode: {
      404: function() {
