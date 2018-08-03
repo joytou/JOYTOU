@@ -51,17 +51,27 @@ if(document.getElementById("tabletbody"))
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
-    var ttr=document.createElement("tr");
-    var ttd=document.createElement("td");
-    ttd.appendChild(document.createTextNode(data[i].name));
-    ttr.appendChild(ttd);
-    var ttd=document.createElement("td");
-    ttd.appendChild(document.createTextNode(data[i].published_at));
-    ttr.appendChild(ttd);
-    var ttd=document.createElement("td");
-    ttd.innerHTML=converter.makeHtml(data[i].body);
-    ttr.appendChild(ttd);
-    document.getElementById("tabletbody").appendChild(ttr);
+    var eli=document.createElement("li");
+    eli.setAttribute("class","list-group-item");
+    var epname=document.createElement("p");
+    epname.appendChild(document.createTextNode(data[i].name));
+    eli.appendChild(epname);
+    var eatar=document.createElement("a");
+    eatar.href=data[i].tarball_url;
+    eatar.appendChild(document.createTextNode("Source code(tar.gz)"));
+    eli.appendChild(eatar);
+    var eazip=document.createElement("a");
+    eazip.href=data[i].zipball_url;
+    eazip.appendChild(document.createTextNode("Source code(zip)"));
+    eli.appendChild(eazip);
+    var eptime=document.createElement("p");
+    eptime.setAttribute("class","small");
+    eptime.appendChild(document.createTextNode(data[i].author.login+' released on '+data[i].published_at));
+    eli.appendChild(eptime);
+    var ediv=document.createElement("div");
+    ediv.innerHTML=converter.makeHTML(data[i].body);
+    eli.appendChild(ediv);
+    document.getElementById("listgroup").appendChild(eli);
     }
     },
     statusCode: {
