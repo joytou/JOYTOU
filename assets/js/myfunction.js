@@ -26,15 +26,15 @@ var converter=new Markdown.Converter();
     dataType: 'json',
     success: function(data) {
 for(var i=0;i<data.length;i++){for(var j=0;j<data[i].labels.length;j++){if(data[i].labels[j].name=='{{ site.github_label }}'&&data[i].user.login=='{{ site.github_username }}'){
-document.getElementById("jumbotrontitle").innerHTML=data[i].title;document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);document.getElementById("jumbotronurl").href=data[i].html_url;
-document.createElement("h1").appendChild(document.createTextNode(data[i].title));
-document.createElement("p").innerHTML=converter.makeHtml(data[i].body);
+/*document.getElementById("jumbotrontitle").innerHTML=data[i].title;document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);document.getElementById("jumbotronurl").href=data[i].html_url;*/
+document.getElementById("jumbotronelements").appendChild(document.createElement("h1").appendChild(document.createTextNode(data[i].title)));
+document.getElementById("jumbotronelements").appendChild(document.createElement("p").innerHTML=converter.makeHtml(data[i].body));
 var aelement=document.createElement("a");
-aelement.appendChild(document.createTextNode('{{ site.data.language[page.lang].readmore }}'));
+aelement.appendChild(document.createTextNode('Read More'));
 aelement.setAttribute('href',data[i].html_url));
 aelement.setAttribute('class','btn btn-primary btn-lg');
 aelement.setAttribute('role','button');
-document.createElement("p").appendChild(aelement);
+document.getElementById("jumbotronelements").appendChild(document.createElement("p").appendChild(aelement));
 j=data[i].labels.length;i=data.length;}}}
     },
     statusCode: {
@@ -44,12 +44,13 @@ j=data[i].labels.length;i=data.length;}}}
     }
    });
 /** downloads page **/
+if(document.getElementById("tabletbody"))
+{
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
-    /*document.getElementById("tabletbody").innerHTML+='<tr><td>'+data[i].prerelease+'</td><td>'+data[i].name+'</td><td>'+data[i].published_at+'</td><td>'+converter.makeHtml(data[i].body)+'</td></tr>';*/
     var ttr=document.createElement("tr");
     var ttd=document.createElement("td");
     ttd.appendChild(document.createTextNode(data[i].prerelease));
@@ -72,3 +73,4 @@ j=data[i].labels.length;i=data.length;}}}
      }
     }
     });
+}
