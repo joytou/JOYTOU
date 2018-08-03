@@ -27,7 +27,7 @@ var converter=new Markdown.Converter();
 for(var i=0;i<data.length;i++){
 for(var j=0;j<data[i].labels.length;j++){
 if(data[i].labels[j].name=='{{ site.github_label }}'&&data[i].user.login=='{{ site.github_username }}'){
-document.getElementById("jumbotrontitle").appendChild(document.createTextNode(data[i].title));
+document.getElementById("jumbotrontitle").innerHTML=data[i].title;
 document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);
 document.getElementById("jumbotronurl").href=data[i].html_url;
 j=data[i].labels.length;
