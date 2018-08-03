@@ -22,7 +22,6 @@ var Markdown;Markdown="object"==typeof exports&&"function"==typeof require?expor
 var converter=new Markdown.Converter();
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',
-    cache: false,
     dataType: 'json',
     success: function(data) {
 for(var i=0;i<data.length;i++){
@@ -47,17 +46,34 @@ i=data.length;
     }
    });
 /** downloads page **/
-if(document.getElementById("tabletbody"))
+if(document.getElementById("listgroup"))
 {
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
-    cache: false,
     dataType: 'json',
     success: function(data) {
     for(var i=0;i<data.length;i++){
     var eli=document.createElement("li");
     eli.setAttribute("class","list-group-item");
-    eli.innerHTML='<p>'+data[i].name+'</p><p><a href="'+data[i].tarball_url+'">tar.gz</a><a href="'+data[i].zipball_url+'">zip</a></p><p class="small">'+data[i].published_at+'</p><div>'+data[i].body+'</div>';
+ //   eli.innerHTML='<p>'+data[i].name+'</p><p><a href="'+data[i].tarball_url+'">tar.gz</a><a href="'+data[i].zipball_url+'">zip</a></p><p class="small">'+data[i].published_at+'</p><div>'+data[i].body+'</div>';
+     var epname=document.createElement("p");
+    epname.appendChild(document.createTextNode(data[i].name));
+    eli.appendChild(epname);
+    var eatar=document.createElement("a");
+    eatar.href=data[i].tarball_url;
+    eatar.appendChild(document.createTextNode("Source code(tar.gz)"));
+    eli.appendChild(eatar);
+    var eazip=document.createElement("a");
+    eazip.href=data[i].zipball_url;
+    eazip.appendChild(document.createTextNode("Source code(zip)"));
+    eli.appendChild(eazip);
+    var eptime=document.createElement("p");
+    eptime.setAttribute("class","small");
+    eptime.appendChild(document.createTextNode(data[i].author.login+' released on '+data[i].published_at));
+    eli.appendChild(eptime);
+    var ediv=document.createElement("div");
+    ediv.innerHTML=converter.makeHTML(data[i].body);
+    eli.appendChild(ediv);
     document.getElementById("listgroup").appendChild(eli);
     }
     },
