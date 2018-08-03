@@ -49,11 +49,17 @@ if(document.getElementById("tabletbody"))
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
     dataType: 'json',
     success: function(data) {
-    for(var i=0;i<data.length;i++){
+for(var i=0;i<data.length;i++){
     var ttr=document.createElement("tr");
+    var ttd=document.createElement("td");
     ttr.appendChild(document.createElement("td").appendChild(document.createTextNode(data[i].name)));
+    ttr.appendChild(ttd);
+    var ttd=document.createElement("td");
     ttr.appendChild(document.createElement("td").appendChild(document.createTextNode(data[i].published_at)));
+    ttr.appendChild(ttd);
+    var ttd=document.createElement("td");
     ttr.appendChild(document.createElement("td").innerHTML=converter.makeHtml(data[i].body));
+    ttr.appendChild(ttd);
     document.getElementById("tabletbody").appendChild(ttr);
     }
     },
