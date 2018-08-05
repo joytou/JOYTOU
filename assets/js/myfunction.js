@@ -29,7 +29,7 @@ var access_token="04b59d3f707f4eb18e"+"c87e0e1beb7fabed86b69c";
             "state": "open",
             "filter": "created",
             "per_page": "1",
-            "page": "1",
+            "page": 1,
             "access_token": access_token
         },
     success: function(data) {
