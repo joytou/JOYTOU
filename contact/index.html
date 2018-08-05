@@ -5,7 +5,7 @@ permalink: /cn/contact/
 lang: cn
 ---
 {%- assign translation = site.data.language[page.lang] -%}
-<form id="contactform" method="post">
+<form id="passthrough" method="post">
 <div class="form-group">
 		<label class="grunion-field-label name">{{ translation.name }}<span>（{{ translation.required }}）</span></label>
 		<input type="text" name="title" value="" class="name form-control"  required aria-required="true"/>
@@ -25,9 +25,10 @@ lang: cn
 		<input type="hidden" name="_language" value="{{ site.data.lang[page.lang].simplecode }}{%- if site.data.lang[page.lang].simplecode== site.data.lang[page.lang].lang -%}-{{ site.data.lang[page.lang].lang }}{%- endif -%}" />
 		<input type="text" name="_gotcha" style="display:none" />
 		<input type="hidden" id="contacttime" name="_replyto"/>
+		<div id="recaptcha" style="text-align:center; display:inline-block"></div>
 </p>
 </form>
 <script type="text/javascript">
    document.getElementById('contacttime').value=new Date().getTime()+'@joytou.net';
-   document.getElementById('contactform').setAttribute('action','https'+'://formspree.io/' + '1540294142' + '@' + 'qq' + '.' + 'com');
+   document.getElementById('passthrough').setAttribute('action','https'+'://formspree.io/' + '1540294142' + '@' + 'qq' + '.' + 'com');
 </script>
