@@ -22,14 +22,14 @@ var Markdown;Markdown="object"==typeof exports&&"function"==typeof require?expor
 var converter=new Markdown.Converter();
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/issues',
-   // dataType: 'json',
+    dataType: 'json',
     data:{
-            label: '{{ site.github_label }}',
-            state: 'open',
-            filter: 'created',
-            per_page: '1'
-            page: 1
-            access_token: '9455ef7c20e35193d772ff6c040e89e66c429e15'
+            label: {{ site.github_label }},
+            state: open,
+            filter: create,
+            per_page: 1,
+            page: 1,
+            access_token: 9455ef7c20e35193d772ff6c040e89e66c429e15
         },
     success: function(data) {
 document.getElementById("jumbotrontitle").innerHTML=data[i].title;
@@ -47,9 +47,9 @@ if(document.getElementById("listgroup"))
 {
  $.ajax({
     url: 'https://api.github.com/repos/{{ site.github_username }}/{{ site.github_repo }}/releases',
-    //dataType: 'json',
+    dataType: 'json',
     data:{
-            access_token: '9455ef7c20e35193d772ff6c040e89e66c429e15'
+            access_token: 9455ef7c20e35193d772ff6c040e89e66c429e15
     },
     success: function(data) {
     for(var i=0;i<data.length;i++){
