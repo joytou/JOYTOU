@@ -22,7 +22,7 @@ lang: cn
 		<input type="submit" name="submitcontent" value="{{ translation.submit }} »" class="btn btn-default btn-block form-control"/>
 		<input type="hidden" name="_subject" value="JOYTOU submission!" />
 		<input type="hidden" name="_format" value="plain" />
-		<input type="hidden" name="_language" value="{{ site.data.lang[page.lang].simplecode }}{%- if site.data.lang[page.lang].simplecode== site.data.lang[page.lang].lang -%}-{{ site.data.lang[page.lang].lang }}{%- endif -%}" />
+		<input type="hidden" name="_language" value="{{ site.data.lang[page.lang].simplecode }}{%- if site.data.lang[page.lang].simplecode != site.data.lang[page.lang].lang -%}-{{ site.data.lang[page.lang].lang }}{%- endif -%}" />
 		<input type="text" name="_gotcha" style="display:none" />
 		<input type="hidden" id="contacttime" name="_replyto"/>
 		<div id="recaptcha" style="text-align:center; display:inline-block"></div>
