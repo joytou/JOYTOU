@@ -28,12 +28,14 @@ var access_token="04b59d3f707f4eb18e"+"c87e0e1beb7fabed86b69c";
             "label": "{{ site.github_label }}",
             "state": "open",
             "filter": "created",
+            "per_page": "1",
+            "page": "1",
             "access_token": access_token
         },
     success: function(data) {
-document.getElementById("jumbotrontitle").innerHTML=data[i].title;
-document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[i].body);
-document.getElementById("jumbotronurl").href=data[i].html_url;
+document.getElementById("jumbotrontitle").innerHTML=data[0].title;
+document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[0].body);
+document.getElementById("jumbotronurl").href=data[0].html_url;
     },
     statusCode: {
      404: function() {
