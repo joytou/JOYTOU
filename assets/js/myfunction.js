@@ -33,9 +33,9 @@ var access_token="04b59d3f707f4eb18e"+"c87e0e1beb7fabed86b69c";
             "access_token": access_token
         },
     success: function(data) {
-/*document.getElementById("jumbotrontitle").innerHTML=data[0].title;
+document.getElementById("jumbotrontitle").innerHTML=data[0].title;
 document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[0].body);
-document.getElementById("jumbotronurl").href=data[0].html_url;*/
+document.getElementById("jumbotronurl").href=data[0].html_url;
 document.getElementById("jumbotroncontent").innerHTML=JSON.stringify(data,null,"\t");
     },
     statusCode: {
