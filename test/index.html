@@ -8,9 +8,15 @@ lang: cn
 <script>
 if(window.location.search){
 var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
-document.write(logincode);
-//https://github.com/login/oauth/access_token
-
+$.post("https://github.com/login/oauth/access_token",
+{
+  client_id:"760be777aaf934af6eca",
+  client_secret:"144e0"+"0bb0f"+"7fc45"+"f732b"+"a405d"+"8b736"+"8572e"+"287c1",
+  code:logincode
+},
+function(data,status){
+        document.write(data);
+ });
 }
 /*var converter = new Markdown.Converter();
 $.getJSON('https://api.github.com/repos/joytou/joytou.github.io/issues', function(data){
