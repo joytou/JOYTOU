@@ -5,11 +5,20 @@ permalink: /tests/
 lang: cn
 ---
 <a id="loginlink" href="https://github.com/login/oauth/authorize?client_id=760be777aaf934af6eca&scope=user,repo">Login Github</a>
+<div id="ddiv"></div>
 <script>
 if(window.location.search){
 var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
-var logintoken=post('https://github.com/login/oauth/access_token',{client_id:'760be777aaf934af6eca',client_secret:'144e00bb0f7fc45f732ba405d8b7368572e287c1',code:logincode}).split("&")[0].split("=")[1];
-document.write(logintoken);
+var logintoken=post('https://github.com/login/oauth/access_token',{client_id:'760be777aaf934af6eca',client_secret:'144e00bb0f7fc45f7'+'32ba405d8b7368572e287c1',code:logincode}).split("&")[0];
+createXMLHTTPRequest();
+      xmlhttp.open("get", "https://api.github.com/user?"+logintoken, true);
+      xmlhttp.onreadystatechange = returnInfo;
+      xmlhttp.send(null);
+if(xmlhttp.readyState == 4)
+      {
+       var info = xmlhttp.responseText;
+       document.getElementById("ddiv").innerTEXT=JSON.stringifyinfo;
+      }
 }
 function post(URL, PARAMS) {      
     var temp = document.createElement("form"); 
@@ -26,6 +35,19 @@ function post(URL, PARAMS) {
     temp.submit();      
     return temp;      
 }
-//access_token=9d61ad5ba3877987cec6a28256f8ec773424ca34&scope=repo%2Cuser&token_type=bearer
+function createXMLHTTPRequest()
+{
+     if(window.ActiveXObject)//②如果当前浏览器为IE
+     {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+     }
+     else if(window.XMLHttpRequest)//③如果是其他浏览器
+     {
+        xmlhttp = new XMLHttpRequest();
+     }else
+     {
+         alert("Your browser does not support XMLHTTP.");
+    }
+}
 </script>
 
