@@ -8,7 +8,7 @@ lang: cn
 <script>
 if(window.location.search){
 var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
-var logintoken=post('https://github.com/login/oauth/access_token',{client_id:'760be777aaf934af6eca',client_secret:'144e00bb0f7fc45f732ba405d8b7368572e287c1',code:logincode});
+var logintoken=post('https://github.com/login/oauth/access_token',{client_id:'760be777aaf934af6eca',client_secret:'144e00bb0f7fc45f732ba405d8b7368572e287c1',code:logincode}).split("&")[0].split("=")[1];
 document.write(logintoken);
 }
 function post(URL, PARAMS) {      
@@ -26,16 +26,6 @@ function post(URL, PARAMS) {
     temp.submit();      
     return temp;      
 }
-/*var converter = new Markdown.Converter();
-$.getJSON('https://api.github.com/repos/joytou/joytou.github.io/issues', function(data){
-   for (var i = 0; i < data.length; i++) {
-   for (var j = 0; j < data[i].labels.length; j++) 
-   {
-      if(data[i].labels[j].name=='announcement')
-      {
-         document.getElementById("test").innerHTML += converter.makeHtml("<p>"+data[i].body)+"</p>";
-       }
-   }
-   }
-});*/</script>
+//access_token=9d61ad5ba3877987cec6a28256f8ec773424ca34&scope=repo%2Cuser&token_type=bearer
+</script>
 
