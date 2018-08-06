@@ -9,45 +9,19 @@ lang: cn
 <script>
 if(window.location.search){
 var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
-var logintoken=post('https://github.com/login/oauth/access_token',{client_id:'760be777aaf934af6eca',client_secret:'144e00bb0f7fc45f7'+'32ba405d8b7368572e287c1',code:logincode}).split("&")[0];
-createXMLHTTPRequest();
-      xmlhttp.open("get", "https://api.github.com/user?"+logintoken, true);
-      xmlhttp.onreadystatechange = returnInfo;
-      xmlhttp.send(null);
-if(xmlhttp.readyState == 4)
-      {
-       var info = xmlhttp.responseText;
-       document.getElementById("ddiv").innerTEXT=JSON.stringifyinfo;
-      }
+var xmlhttp;
+if(window.XMLHttpRequest){xmlhttp=new XMLHttpRequest();}else{xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}
+xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("ddiv").innerHTML=JSON.stringify(xmlhttp.responseText);
+		}
+	}
+xmlhttp.open("POST","https://github.com/login/oauth/access_token",true);
+xmlhttp.setRequestHeader("Accept","application/json");
+xmlhttp.send("client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode);
 }
-function post(URL, PARAMS) {      
-    var temp = document.createElement("form"); 
-    temp.action = URL;      
-    temp.method = "post";
-    temp.style.display = "none";      
-    for (var x in PARAMS) {      
-        var opt = document.createElement("textarea");      
-        opt.name = x;      
-        opt.value = PARAMS[x];      
-        temp.appendChild(opt);      
-    }      
-    document.body.appendChild(temp);      
-    temp.submit();      
-    return temp;      
-}
-function createXMLHTTPRequest()
-{
-     if(window.ActiveXObject)//②如果当前浏览器为IE
-     {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-     }
-     else if(window.XMLHttpRequest)//③如果是其他浏览器
-     {
-        xmlhttp = new XMLHttpRequest();
-     }else
-     {
-         alert("Your browser does not support XMLHTTP.");
-    }
-}
+
 </script>
 
