@@ -34,9 +34,7 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 /* Login Testing */
 if(window.location.search){
 var logincode=window.location.search.split("=")[1];
-document.write(logincode);
 $.ajax({
-        type: 'post',
         dataType:'json',
         url: 'https://github.com/login/oauth/access_token',
         data:{
