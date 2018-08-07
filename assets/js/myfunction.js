@@ -36,14 +36,21 @@ if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
 $.ajax({
-        type: 'POST',
+//        type: 'POST',
         dataType:'html',
-        url: 'https://github.com/login/oauth/access_token',
-        data:{"client_id":"760be777aaf934af6eca","client_secret":"144e00bb0f7fc45f732ba405d8b7368572e287c1","code":logincode},
-        headers:{"Accept":"application/json"},
+        url: 'https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code='+logincode,
+//        headers:{"Accept":"application/json"},
         success:function(data){
-        document.write(data);
+        document.write(HTMLEncode(data));
         },
         statusCode:{404:function(){document.write("Status Code: 404");}}
 });
+}
+//HTML转义
+function HTMLEncode(html) {
+var temp = document.createElement("div");
+(temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+var output = temp.innerHTML;
+temp = null;
+return output;
 }
