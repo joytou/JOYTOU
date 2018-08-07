@@ -54,7 +54,7 @@ xmlhttp.onreadystatechange=function()
     }
 }
 xmlhttp.open("GET","https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode,true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.setRequestHeader("Accept","application/json");
 xmlhttp.send();
 }
 //HTML转义
