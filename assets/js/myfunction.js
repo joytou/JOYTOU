@@ -18,7 +18,7 @@ var _config={
 /*End Javascript Config*/
 
 /*archive.js*/
-if(window.location.search){var searchURL=window.location.search;searchURL=searchURL.substring(1,searchURL.length);var targetPageId=searchURL.split("&")[0].split("=")[1];document.write(targetPageId);}
+/*if(window.location.search){var searchURL=window.location.search;searchURL=searchURL.substring(1,searchURL.length);var targetPageId=searchURL.split("&")[0].split("=")[1];document.write(targetPageId);}*/
 /*cb-search.js*/
 $(document).ready(function(){var time1=0;var show=false;var names=new Array();/*文章名字等*/var urls=new Array();/*文章地址*/$(document).keyup(function(e){var time2=new Date().getTime();if(e.keyCode==17){var gap=time2-time1;time1=time2;if(gap<500){if(show){$(".cb-search-tool").css("display","none");show=false;}else{$(".cb-search-tool").css("display","block");show=true;$("#cb-search-content").val("");$("#cb-search-content").focus();}time1=0;}}else if(e.keyCode==27){$(".cb-search-tool").css("display","none");show=false;time1=0;}});$("#cb-search-content").keyup(function(e){var time2=new Date().getTime();if(e.keyCode==17){var gap=time2-time1;time1=time2;if(gap<500){if(show){$(".cb-search-tool").css("display","none");show=false;}else{$(".cb-search-tool").css("display","block");show=true;$("#cb-search-content").val("");$("#cb-search-content").focus();}time1=0;}}});$("#cb-close-btn").click(function(){$(".cb-search-tool").css("display","none");show=false;time1=0;});$("#cb-search-btn").click(function(){$(".cb-search-tool").css("display","block");show=true;$("#cb-search-content").val("");$("#cb-search-content").focus();time1=0;});$.getJSON("{{ site.baseurl }}/search.json").done(function(data){if(data.code==0){for(var index in data.data){var item=data.data[index];names.push(item.title);urls.push(item.url);}$("#cb-search-content").typeahead({source:names,afterSelect: function(item){$(".cb-search-tool").css("display","none");show=false;window.location.href=(urls[names.indexOf(item)]);return item;}});}}).error(function(data,b){console.log("json解析错误，搜索功能暂不可用，请检查文章title，确保不含有换行等特殊符号");});});
 /*gotop.js*/
@@ -31,3 +31,29 @@ var Markdown;Markdown="object"==typeof exports&&"function"==typeof require?expor
 var converter=new Markdown.Converter();$.ajax({url: 'https://api.github.com/repos/'+_config['owner']+'/'+_config['repo']+'/issues',dataType:'json',data:{"label":_config['bulletinboardlabel'],"state":"open","filter":"created","per_page":"1","page":1,"access_token":_config['access_token']},success:function(data){document.getElementById("jumbotrontitle").innerHTML=data[0].title;document.getElementById("jumbotroncontent").innerHTML=converter.makeHtml(data[0].body);document.getElementById("jumbotronurl").href=data[0].html_url;},statusCode:{404:function(){document.getElementById("jumbotrontitle").innerHTML="Status Code: 404";}}});
 /** downloads page **/
 if(document.getElementById("listgroup")){var accesstoken:"04b59d3f707f4eb18e"+"c87e0e1beb7fabed86b69c";$.ajax({url: 'https://api.github.com/repos/joytou/joytou.github.io/releases',dataType:'json',data:{"access_token": accesstoken},success:function(data){for(var i=0;i<data.length;i++){var eli=document.createElement("li");eli.setAttribute("class","list-group-item");eli.innerHTML='<h2>'+data[i].name+(data[i].prerelease?'(Pre-Release)':'')+'</h2><p class="small">published on '+new Date(data[i].published_at).toUTCString()+'</p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHtml(data[i].body)+'</div>';document.getElementById("listgroup").appendChild(eli);}},statusCode:{404:function(){document.getElementById("listgroup").innerHTML="Status Code: 404";}}});}
+/* Testing Login.js*/
+if(document.getElementById("logindiv")&&window.location.search){
+var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
+$.ajax({
+        url: 'https://github.com/login/oauth/access_token',
+        type: 'POST',
+        dataType:'json',
+        headers: {
+                          "Accept": "application/json"
+                         }
+        data: {
+                   "client_id": "760be777aaf934af6eca",
+                   "client_secret": "144e00bb0f7fc45f732ba405d8b7368572e287c1",
+                   "code": logincode
+                   }
+                   success:function(data){
+                   document.getElementById("logindiv").innerHTML=JSON.stringify(data);
+                   }
+                   error:function(data){
+                   window.alert("Error: "+data);
+                   }
+                   statusCode:{404:function(){
+                   document.getElementById("logindiv").innerTEXT="Status Code: 404";
+                   }}
+});
+}

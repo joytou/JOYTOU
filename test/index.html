@@ -5,26 +5,4 @@ permalink: /tests/
 lang: cn
 ---
 <a id="loginlink" href="https://github.com/login/oauth/authorize?client_id=760be777aaf934af6eca&scope=user,repo">Login Github</a>
-<div id="ddiv"></div>
-<script>
-if(window.location.search){
-var logincode=window.location.search.substring(1,window.location.search.length).split("=")[1];
-var xmlhttp;
-if(window.XMLHttpRequest){xmlhttp=new XMLHttpRequest();}else{xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");}
-xmlhttp.onreadystatechange=function()
-	{
-//		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		if (xmlhttp.readyState==4)
-		{
-			document.write(JSON.stringify(xmlhttp.responseText));
-			document.write("<br/>");
-			document.write(xmlhttp.responseText);
-		}
-	}
-xmlhttp.open("POST","https://github.com/login/oauth/access_token",true);
-xmlhttp.setRequestHeader("Accept","application/json");
-xmlhttp.send("client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode);
-}
-
-</script>
-
+<div id="logindiv"></div>
