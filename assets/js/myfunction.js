@@ -49,6 +49,9 @@ $.ajax({
         success:function(data){
         document.getElementById("logindiv").innerHTML=JSON.stringify(data);
         },
-        statusCode:{404:function(){document.getElementById("logindiv").innerHTML="Status Code: 404";}}
+        statusCode:{404:function(){document.getElementById("logindiv").innerHTML="Status Code: 404";}},
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        window.alert("状态码："+XMLHttpRequest.status+"\n状态："+XMLHttpRequest.readyState+"\n错误信息："+textStatus);
+        }
 });
 }
