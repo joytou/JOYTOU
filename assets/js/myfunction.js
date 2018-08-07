@@ -14,7 +14,7 @@ var _config={
         bulletinboardlabel: "{{ site.github_label }}"
         //公告栏中对应issues的标签。默认为{{ site.github_label }}，对应_config.yml的配置，可自定义修改。
         //issues label, used as a filter for bulletin board data. The default is {{ site.github_label }}, which corresponds to the configuration of _config.yml and can be customized.
-}
+};
 /*End Javascript Config*/
 
 /*archive.js*/
