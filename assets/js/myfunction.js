@@ -34,19 +34,21 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 /* Login Testing */
 if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
+var loginlog;
 document.write(logincode);
 $.ajax({
+        type: 'POST',
         dataType:'html',
-        url: 'https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code='+logincode,
+        url: 'https://github.com/login/oauth/access_token',
+        data:{"client_id":"760be777aaf934af6eca","client_secret":"144e00bb0f7fc45f732ba405d8b7368572e287c1","code":logincode},
+        headers:{"Accept":"application/json"},
         success:function(data){
         document.write(data);
         },
-        statusCode:{404:function(){document.write("Status Code: 404");}}/*,
+        statusCode:{404:function(){document.write("Status Code: 404");}},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-        document.write("ERROR:");
-        document.write(XMLHttpRequest.status);
-        document.write(XMLHttpRequest.readyState);
-        document.write(textStatus);
-        }*/
+        loginlog+="code:"XMLHttpRequest.status+XMLHttpRequest.readyState+",msg:"+textStatus+"<br/>";
+        }
 });
+document.write(loginlog);
 }
