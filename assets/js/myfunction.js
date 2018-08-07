@@ -37,23 +37,16 @@ var logincode=window.location.search.split("=")[1];
 $.ajax({
         dataType:'json',
         url: 'https://github.com/login/oauth/access_token',
-        data:{
-                "client_id":"760be777aaf934af6eca",
-                "client_secret":"144e00bb0f7fc45f732ba405d"+"8b7368572e287c1",
-                "code":logincode
-        },
-        headers:{
-        "Accept":"application/json"
-        },
+        data:{"client_id":"760be777aaf934af6eca","client_secret":"144e00bb0f7fc45f732ba405d"+"8b7368572e287c1","code":logincode},
         success:function(data){
-        document.write(JSON.stringify(data));
+        document.write(data);
         },
-        statusCode:{404:function(){document.write("Status Code: 404");}},
+        statusCode:{404:function(){document.write("Status Code: 404");}}/*,
         error: function (XMLHttpRequest, textStatus, errorThrown) {
         document.write("ERROR:");
         document.write(XMLHttpRequest.status);
         document.write(XMLHttpRequest.readyState);
         document.write(textStatus);
-        }
+        }*/
 });
 }
