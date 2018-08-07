@@ -34,6 +34,7 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 /* Login Testing */
 if(document.getElementById("logindiv")&&window.location.search){
 var logincode=window.location.search.split("=")[1];
+document.write(logincode);
 $.ajax({
         type: 'post',
         dataType:'json',
@@ -51,7 +52,7 @@ $.ajax({
         },
         statusCode:{404:function(){document.getElementById("logindiv").innerHTML="Status Code: 404";}},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("状态码："+XMLHttpRequest.status+"\n状态："+XMLHttpRequest.readyState+"\n错误信息："+textStatus);
+        document.write("状态码："+XMLHttpRequest.status+"\n状态："+XMLHttpRequest.readyState+"\n错误信息："+textStatus);
         }
 });
 }
