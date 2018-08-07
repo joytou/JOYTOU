@@ -47,7 +47,7 @@ $.ajax({
         },
         statusCode:{404:function(){document.write("Status Code: 404");}},
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-        loginlog+="code:"XMLHttpRequest.status+XMLHttpRequest.readyState+",msg:"+textStatus+"<br/>";
+        loginlog+=("code:"+XMLHttpRequest.status+XMLHttpRequest.readyState+",msg:"+textStatus+"<br/>");
         }
 });
 document.write(loginlog);
