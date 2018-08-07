@@ -33,11 +33,11 @@ var converter=new Markdown.Converter();$.ajax({url: 'https://api.github.com/repo
 if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c87e0e1beb7fabed86b69c";$.ajax({url: 'https://api.github.com/repos/joytou/joytou.github.io/releases',dataType:'json',data:{"access_token": accesstoken},success:function(data){for(var i=0;i<data.length;i++){var eli=document.createElement("li");eli.setAttribute("class","list-group-item");eli.innerHTML='<h2>'+data[i].name+(data[i].prerelease?'(Pre-Release)':'')+'</h2><p class="small">published on '+new Date(data[i].published_at).toUTCString()+'</p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHtml(data[i].body)+'</div>';document.getElementById("listgroup").appendChild(eli);}},error:function(XMLHttpRequest, textStatus, errorThrown){window.alert(XMLHttpRequest.status+"\n"+XMLHttpRequest.readyState+"\n"+textStatus);},statusCode:{404:function(){document.getElementById("listgroup").innerHTML="Status Code: 404";}}});}
 /* Login Testing */
 if(window.location.search){
-var logincode=window.location.search.split("=")[1];
+var logincode=window.location.search.split("&")[0].split("=")[1];
+document.write(logincode);
 $.ajax({
-        dataType:'text',
-        url: 'https://github.com/login/oauth/access_token',
-        data:{"client_id":"760be777aaf934af6eca","client_secret":"144e00bb0f7fc45f732ba405d"+"8b7368572e287c1","code":logincode},
+        dataType:'html',
+        url: 'https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code='+logincode,
         success:function(data){
         document.write(data);
         },
