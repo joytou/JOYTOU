@@ -40,20 +40,26 @@ if (window.XMLHttpRequest)
 {
     //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
     xmlhttp=new XMLHttpRequest();
+    window.alert("XMLHttpRequest");
 }
-else
+else if (window.ActiveXObject)
 {
     // IE6, IE5 浏览器执行代码
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    window.alert("ActiveXOnject");
+}
+else
+{
+    window.alert("Not supported AJAX");
 }
 xmlhttp.onreadystatechange=function()
 {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 //        document.write("Status Code: "+xmlhttp.status);
-        document.getElementById("logindiv").innerTEXT=xmlhttp.responseText;
+        document.getElementById("logindiv").innerHTML=xmlhttp.responseText;
     }else{
-         document.getElementById("logindiv").innerTEXT=("status Code: "+ xmlhttp.readyState+", http Code: "+ xmlhttp.status);
+         document.getElementById("logindiv").innerHTML=("status Code: "+ xmlhttp.readyState+", http Code: "+ xmlhttp.status);
     }
 }
 xmlhttp.open("GET","https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode,true);
