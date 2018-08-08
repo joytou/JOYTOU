@@ -8,7 +8,7 @@ var github_location_id="";
 var github_blog_id="";
 var github_email_id="";
 var github_company_id="";
-document.write("Config runs");
+document.write("Config runs\n");
 /******** End config ********/
 
 	var xmlhttp;
@@ -17,7 +17,7 @@ document.write("Config runs");
 	{
 		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
 		xmlhttp=new XMLHttpRequest();
-		document.write("XMLHTTPRequest");
+		document.write("XMLHTTPRequest\n");
 	}
 	else
 	{
@@ -30,7 +30,7 @@ document.write("Config runs");
 	statuscodealrm+=xmlhttp.readyState+":"+xmlhttp.status+";";
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("logindiv").innerHTML=JSON.stringify(xmlhttp.responseText);
+			document.getElementById("logindiv").innerTEXT=JSON.stringify(xmlhttp.responseText);
 /*			     var usersprofile=JSON.parse(xmlhttp.responseText);
      if(github_login_id!=""){
      document.getElementById(github_login_id).innerTEXT=usersprofile.login;
