@@ -12,6 +12,7 @@ document.write("Config runs");
 /******** End config ********/
 
 	var xmlhttp;
+	var statuscodealrm="";
 	if (window.XMLHttpRequest)
 	{
 		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -26,7 +27,7 @@ document.write("Config runs");
 	}
 	xmlhttp.onreadystatechange=function()
 	{
-	document.write(xmlhttp.readyState+xmlhttp.status);
+	statuscodealrm+=xmlhttp.readyState+":"+xmlhttp.status+";";
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
@@ -53,5 +54,6 @@ document.write("Config runs");
      }
 		}
 	}
-	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,true);
+	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,false);
 	xmlhttp.send();
+window.alert(statuscodealrm);
