@@ -37,25 +37,6 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
-if(logincode)
-{
-var requestAuthUri = 'https://github.com/login/oauth/access_token';
-var ajaxArgs = {
-    type        :   'POST',
-    url         :   requestAuthUri,
-    headers     :   {
-        'Accept'    :   'application/json'
-    },
-    data        :   {
-        'client_id'         :       _config['client_id'],
-        'client_secret' :       _config['client_secret'],
-        'code'               :       logincode
-    },
-    dataType    :   'json',
-    error       :   function( jqXHR, textStatus, errorThrown ) {
-            window.alert( textStatus + ' : ' + errorThrown );
-        }
-    };
-    $.ajax( ajaxArgs ).done( function( response ) {
-       window.alert( response );
-    });}
+$.ajax({type:'post',url:'https://github.com/login/oauth/access_token',dataType:'json',headers:{'Accept','application/json'},data:{"client_id":_config['client_id'],'client_secret':_config['client_secret'],'code':logincode},success:function(data){
+/*for(var i=0;i<data.length;i++){var eli=document.createElement("li");eli.setAttribute("class","list-group-item");eli.innerHTML='<h2>'+data[i].name+(data[i].prerelease?'(Pre-Release)':'')+'</h2><p class="small">published on '+new Date(data[i].published_at).toUTCString()+'</p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHtml(data[i].body)+'</div>';document.getElementById("listgroup").appendChild(eli);}*/
+document.getElementById("logindiv").innerHTML=data;document.getElementById("logindiv").innerHTML+='<strong>';document.getElementById("logindiv").innerHTML+=JSON.stringify(data);document.getElementById("logindiv").innerHTML+='</strong>';},error:function(XMLHttpRequest, textStatus, errorThrown){window.alert(XMLHttpRequest.status+"\n"+XMLHttpRequest.readyState+"\n"+textStatus);},statusCode:{404:function(){document.getElementById("logindiv").innerHTML="Status Code: 404";}}});
