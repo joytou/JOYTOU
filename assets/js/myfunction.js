@@ -11,9 +11,11 @@ var _config={
         repo: "{{ site.github_repo }}",
         //github中对应项目名。默认为{{ site.github_repo }}，对应_config.yml的配置，可自定义修改。
         // github corresponding items name. The default is that {{ site.github_repo }}, the corresponding settings for the _config.yml, can be customized.
-        bulletinboardlabel: "{{ site.github_label }}"
+        bulletinboardlabel: "{{ site.github_label }}",
         //公告栏中对应issues的标签。默认为{{ site.github_label }}，对应_config.yml的配置，可自定义修改。
         //issues label, used as a filter for bulletin board data. The default is {{ site.github_label }}, which corresponds to the configuration of _config.yml and can be customized.
+        client_id: "760be777aaf934af6eca",
+        client_secret: "144e00bb0f7fc45f732ba405d8b7368572e287c1"
 };
 /*End Javascript Config*/
 
@@ -35,36 +37,25 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
-var xmlhttp;
-if (window.XMLHttpRequest)
+if(logincode)
 {
-    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-    xmlhttp=new XMLHttpRequest();
-    window.alert("XMLHttpRequest");
-}
-else if (window.ActiveXObject)
-{
-    // IE6, IE5 浏览器执行代码
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    window.alert("ActiveXOnject");
-}
-else
-{
-    window.alert("Not supported AJAX");
-}
-xmlhttp.onreadystatechange=function()
-{
-/*    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-        document.getElementById("logindiv").innerHTML=xmlhttp.responseText;
-    }else{
-         document.getElementById("logindiv").innerHTML=("status Code: "+ xmlhttp.readyState+", http Code: "+ xmlhttp.status);
-    }*/
-    document.getElementById("logindiv").innerHTML+=("status Code: "+ xmlhttp.readyState+", http Code: "+ xmlhttp.status);
-}
-xmlhttp.open("GET","https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode,true);
-xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
-xmlhttp.setRequestHeader("Content-Type","application/json; charset=utf-8");
-xmlhttp.setRequestHeader("Accept","application/json");
-xmlhttp.send();
-}
+var requestAuthUri = 'https://github.com/login/oauth/access_token';
+var ajaxArgs = {
+    type        :   'POST',
+    url         :   requestAuthUri,
+    headers     :   {
+        'Accept'    :   'application/json'
+    },
+    data        :   {
+        'client_id'         :       _config['client_id'],
+        'client_secret' :       _config['client_secret'],
+        'code'               :       logincode
+    },
+    dataType    :   'json',
+    error       :   function( jqXHR, textStatus, errorThrown ) {
+            window.alert( textStatus + ' : ' + errorThrown );
+        }
+    };
+    $.ajax( ajaxArgs ).done( function( response ) {
+       window.alert( response );
+    });}
