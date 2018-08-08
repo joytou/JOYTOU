@@ -53,7 +53,7 @@ data:{
           'code':logincode
           },
 success:function(data){
-tempmsg+=data+"\n";
+tempmsg+=JSON.stringify(data)+"\n";
 },
 error:function(data){
 tempmsg+=data+"\n";
