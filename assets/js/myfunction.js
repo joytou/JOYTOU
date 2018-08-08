@@ -50,14 +50,12 @@ data:{
           'code':logincode
           },
 success:function(data){
-/*for(var i=0;i<data.length;i++){var eli=document.createElement("li");eli.setAttribute("class","list-group-item");eli.innerHTML='<h2>'+data[i].name+(data[i].prerelease?'(Pre-Release)':'')+'</h2><p class="small">published on '+new Date(data[i].published_at).toUTCString()+'</p><p><strong>Assets</strong><ul><li><a href="'+data[i].tarball_url+'">tar.gz</a></li><li><a href="'+data[i].zipball_url+'">zip</a></li></ul></p><div>'+converter.makeHtml(data[i].body)+'</div>';document.getElementById("listgroup").appendChild(eli);}*/
+/*
 document.getElementById("logindiv").innerHTML=data;
 document.getElementById("logindiv").innerHTML+="<strong>";
 document.getElementById("logindiv").innerHTML+=JSON.stringify(data);
-document.getElementById("logindiv").innerHTML+="</strong>";
-},
-error:function(XMLHttpRequest, textStatus, errorThrown){
-window.alert(XMLHttpRequest.status+"\n"+XMLHttpRequest.readyState+"\n"+textStatus);
+document.getElementById("logindiv").innerHTML+="</strong>";*/
+window.alert(data);
 },
 statusCode:{404:function(){
 document.getElementById("logindiv").innerHTML="Status Code: 404";}}
