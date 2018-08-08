@@ -50,18 +50,11 @@ xmlhttp.onreadystatechange=function()
 {
     if (xmlhttp.readyState==4/* && xmlhttp.status==200*/)
     {
-        document.getElementById("logindiv").innerHTML=HTMLEncode(xmlhttp.responseText);
+        document.write("Status Code: "+xmlhttp.status);
+        document.getElementById("logindiv").innerTEXT=xmlhttp.responseText;
     }
 }
 xmlhttp.open("GET","https://github.com/login/oauth/access_token?client_id=760be777aaf934af6eca&client_secret=144e00bb0f7fc45f732ba405d8b7368572e287c1&code="+logincode,true);
 xmlhttp.setRequestHeader("Accept","application/json");
 xmlhttp.send();
-}
-//HTML转义
-function HTMLEncode(html) {
-var temp = document.createElement("div");
-(temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
-var output = temp.innerHTML;
-temp = null;
-return output;
 }
