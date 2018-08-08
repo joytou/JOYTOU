@@ -40,9 +40,10 @@ document.write(logincode);
 $.ajax({
 type:'post',
 url:'https://github.com/login/oauth/access_token',
-dataType:'json',
+dataType:'text',
+cache:'false',
 headers:{
-                "Accept":"application/json"
+                "Accept":"text/plain"
                 },
 data:{
           "client_id":_config['client_id'],
@@ -58,6 +59,8 @@ document.getElementById("logindiv").innerHTML+="</strong>";*/
 window.alert(data);
 },
 statusCode:{404:function(){
-document.getElementById("logindiv").innerHTML="Status Code: 404";}}
+//document.getElementById("logindiv").innerHTML="Status Code: 404";
+window.alert("Error: 404");
+}}
 });
 }
