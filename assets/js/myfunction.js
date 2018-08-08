@@ -37,7 +37,7 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
-var tempmsg;
+var tempmsg="";
 $.ajax({
 type:'post',
 url:'https://github.com/login/oauth/access_token',
@@ -53,16 +53,12 @@ data:{
           'code':logincode
           },
 success:function(data){
-
-//window.alert(JSON.stringify(data));
 tempmsg+=data+"\n";
 },
 error:function(data){
-//window.alert(errordata);
 tempmsg+=data+"\n";
 },
 statusCode:{404:function(){
-//window.alert("Error: 404");
 tempmsg+="Error: 404\n";
 }}
 });
