@@ -38,7 +38,7 @@ if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
 $.ajax({
-type:'post',
+type:'get',
 url:'https://github.com/login/oauth/access_token',
 //dataType:'json',
 async:false,
