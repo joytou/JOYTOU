@@ -10,34 +10,23 @@ var github_email_id="";
 var github_company_id="";
 /******** End config ********/
 
-var xmlhttp=null;
-if (window.XMLHttpRequest)
-  {
-  xmlhttp=new XMLHttpRequest();
-  }
-else if (window.ActiveXObject)
-  {
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-if (xmlhttp!=null)
-  {
-  xmlhttp.onreadystatechange=state_Change;
-  xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,true);
-  xmlhttp.send(null);
-  }
-else
-  {
-  alert("Your browser does not support XMLHTTP.");
-  }
-}
-
-function state_Change()
-{
-if (xmlhttp.readyState==4)
-  {
-  if (xmlhttp.status==200)
-    {
-     var usersprofile=JSON.parse(xmlhttp.responseText);
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+			     var usersprofile=JSON.parse(xmlhttp.responseText);
      if(github_login_id!=""){
      document.getElementById(github_login_id).innerTEXT=usersprofile.login;
      }if(github_name_id!=""){
@@ -58,5 +47,7 @@ if (xmlhttp.readyState==4)
      }if(github_company_id!=""){
      document.getElementById(github_company_id).innerTEXT=usersprofile.company;
      }
-    }
-  }
+		}
+	}
+	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,true);
+	xmlhttp.send();
