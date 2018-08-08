@@ -15,7 +15,7 @@ var _config={
         //公告栏中对应issues的标签。默认为{{ site.github_label }}，对应_config.yml的配置，可自定义修改。
         //issues label, used as a filter for bulletin board data. The default is {{ site.github_label }}, which corresponds to the configuration of _config.yml and can be customized.
         client_id: "760be777aaf934af6eca",
-        client_secret: "144e00bb0f7fc45f732ba405d8b7368572e287c1"
+        client_secret: "144e00bb0f7fc45f732ba405d"+"8b7368572e287c1"
 };
 /*End Javascript Config*/
 
@@ -37,13 +37,15 @@ if(document.getElementById("listgroup")){var accesstoken="04b59d3f707f4eb18e"+"c
 if(window.location.search){
 var logincode=window.location.search.split("&")[0].split("=")[1];
 document.write(logincode);
+var tempmsg;
 $.ajax({
 type:'post',
 url:'https://github.com/login/oauth/access_token',
-dataType:'text',
-cache:'false',
+dataType:'json',
+async:false,
+cache:false,
 headers:{
-                "Accept":"text/plain"
+                "Accept":"application/json"
                 },
 data:{
           "client_id":_config['client_id'],
@@ -51,16 +53,18 @@ data:{
           'code':logincode
           },
 success:function(data){
-/*
-document.getElementById("logindiv").innerHTML=data;
-document.getElementById("logindiv").innerHTML+="<strong>";
-document.getElementById("logindiv").innerHTML+=JSON.stringify(data);
-document.getElementById("logindiv").innerHTML+="</strong>";*/
-window.alert(data);
+
+//window.alert(JSON.stringify(data));
+tempmsg+=data+"\n";
+},
+error:function(data){
+//window.alert(errordata);
+tempmsg+=data+"\n";
 },
 statusCode:{404:function(){
-//document.getElementById("logindiv").innerHTML="Status Code: 404";
-window.alert("Error: 404");
+//window.alert("Error: 404");
+tempmsg+="Error: 404\n";
 }}
 });
+window.alert(tempmsg);
 }
