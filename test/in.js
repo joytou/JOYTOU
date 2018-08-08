@@ -30,8 +30,8 @@ document.write("Config runs");
 	statuscodealrm+=xmlhttp.readyState+":"+xmlhttp.status+";";
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-			     var usersprofile=JSON.parse(xmlhttp.responseText);
+			document.getElementById("logindiv").innerHTML=JSON.stringify(xmlhttp.responseText);
+/*			     var usersprofile=JSON.parse(xmlhttp.responseText);
      if(github_login_id!=""){
      document.getElementById(github_login_id).innerTEXT=usersprofile.login;
      }if(github_name_id!=""){
@@ -51,7 +51,7 @@ document.write("Config runs");
      document.getElementById(github_email_id).innerTEXT=usersprofile.email;
      }if(github_company_id!=""){
      document.getElementById(github_company_id).innerTEXT=usersprofile.company;
-     }
+     }*/
 		}
 	}
 	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,false);
