@@ -8,6 +8,7 @@ var github_location_id="";
 var github_blog_id="";
 var github_email_id="";
 var github_company_id="";
+document.write("Config runs");
 /******** End config ********/
 
 	var xmlhttp;
@@ -15,14 +16,17 @@ var github_company_id="";
 	{
 		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
 		xmlhttp=new XMLHttpRequest();
+		document.write("XMLHTTPRequest");
 	}
 	else
 	{
 		// IE6, IE5 浏览器执行代码
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		document.write("ActiveXObject");
 	}
 	xmlhttp.onreadystatechange=function()
 	{
+	document.write(xmlhttp.readyState+xmlhttp.status);
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
