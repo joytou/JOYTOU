@@ -23,14 +23,14 @@ document.write("Config runs\n");
 	{
 		// IE6, IE5 浏览器执行代码
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		document.write("ActiveXObject");
+		document.write("ActiveXObject\n");
 	}
 	xmlhttp.onreadystatechange=function()
 	{
 	statuscodealrm+=xmlhttp.readyState+":"+xmlhttp.status+";";
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.getElementById("logindiv").innerTEXT=JSON.stringify(xmlhttp.responseText);
+			document.write(xmlhttp.responseText);
 /*			     var usersprofile=JSON.parse(xmlhttp.responseText);
      if(github_login_id!=""){
      document.getElementById(github_login_id).innerTEXT=usersprofile.login;
