@@ -51,7 +51,7 @@ document.write("Config runs\n");
      document.getElementById(github_email_id).innerTEXT=usersprofile.email;
      }if(github_company_id!=""){
      document.getElementById(github_company_id).innerTEXT=usersprofile.company;
-     }*/
+     }
 		}
 	}
 	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,false);
