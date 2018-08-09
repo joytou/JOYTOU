@@ -30,8 +30,8 @@ document.write("Config runs\n");
 	statuscodealrm+=xmlhttp.readyState+":"+xmlhttp.status+";";
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-			document.write(xmlhttp.responseText);
-/*			     var usersprofile=JSON.parse(xmlhttp.responseText);
+			//document.write(xmlhttp.responseText);
+   var usersprofile=xmlhttp.responseText;
      if(github_login_id!=""){
      document.getElementById(github_login_id).innerTEXT=usersprofile.login;
      }if(github_name_id!=""){
