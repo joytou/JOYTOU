@@ -1,14 +1,5 @@
 /******** Start config ********/
-var github_access_token="04b59d3f707f4eb18ec8"+"7e0e1beb7fabed86b69c";
-var github_login_id="logindiv";
-var github_name_id="";
-var github_avatar_id="";
-var github_bio_id="";
-var github_location_id="";
-var github_blog_id="";
-var github_email_id="";
-var github_company_id="";
-document.write("Config runs\n");
+
 /******** End config ********/
 
 	var xmlhttp;
@@ -54,6 +45,6 @@ document.write("Config runs\n");
      }
 		}
 	}
-	xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,false);
-	xmlhttp.send();
-window.alert(statuscodealrm);
+	//xmlhttp.open("GET","https://api.github.com/user?access_token="+github_access_token,false);
+//	xmlhttp.send();
+//window.alert(statuscodealrm);
